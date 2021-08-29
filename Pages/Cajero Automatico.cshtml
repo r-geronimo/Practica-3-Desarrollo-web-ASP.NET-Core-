@@ -1,0 +1,94 @@
+﻿@page
+@model Practica_3__Desarrollo_web_ASP.NET_Core_.Pages.Cajero_AutomaticoModel
+@{
+
+    /*
+
+2) Cree una pagina con un formulario que funcione como cajero automático
+ para el banco ABC. El cajero tendrá un límite de billetes descrito a continuación: 
+9 de 1000, 19 de 500, 99 de 100
+El cajero debe solicitar Banco y monto a retirar. Si el banco es ABC el limite de
+retiro son 10,000 y 2000 pesos por transacción en caso contrario.
+El cajero debe informar si el monto solicitado no puede ser dispensado o si
+excede el límite de transacción. Y debe hacer la distribución de los billetes de
+acuerdo al monto. Por ejemplo, si el usuario solicita 3,900 y hay disponibilidad en
+todos los billetes, el cajero debe dispensar 3 billetes de mil, 1 de quinientos y 4 de
+cien.
+
+
+
+
+
+        */
+
+
+    int d1000;
+    int d500;
+    int d100;
+    int x = 113900;
+    int y= Model.CantidadRetirar;
+    int z;
+    int Total;
+    string mensaje = "";
+
+
+
+
+    d1000 = y / 1000;
+    y = y - 1000 * d1000;
+    x = x - 1000 * d1000;
+
+    d500 = y / 500;
+    y = y - 500 * d500;
+    x = x - 500 * d500;
+
+    d100 = y / 100;
+    y = y - 100 * d100;
+    x = x - 100 * d100;
+
+
+    Total =  1000 * d1000 + 500 * d500 + 100 * d100;
+
+    if (Total > 28400)
+    {
+        mensaje = "El cajero no dispone de ese Monto Solicitado";
+    }
+
+    if (Total > 10000)
+    {
+        mensaje = "El Límite Maximo por Transacción es de 10,000";
+    }
+
+
+
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+    <form method="get">
+        <input type="type" name="Retiro" value="Cantidad Retirar" />
+        <input type="submit" value="Actualizar " />
+
+    </form>
+
+    <p>Cantidad a Retirar: @Model.CantidadRetirar</p>
+    <p>Billetes de 1000: @d1000</p>
+    <p>Billetes de 100 : @d500</p>
+    <p>Billetes de 50 : @d100</p>
+    <p>Total Entregado : @Total</p>
+
+    <h1>>@mensaje</h1>
+
+
+</div>
